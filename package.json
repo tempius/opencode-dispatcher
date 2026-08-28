@@ -1,0 +1,12 @@
+{
+  "name": "opencode-dispatcher",
+  "version": "1.0.0",
+  "description": "Dynamic infrastructure and model triage dispatcher for OpenCode Desktop",
+  "type": "module",
+  "keywords": [
+    "opencode-skill"
+  ],
+  "opencode": {
+    "skills": "./skills"
+  }
+}
