@@ -4,37 +4,21 @@ A dynamic model routing engine for OpenCode Desktop that routes your prompts to 
 
 ---
 
-## 🛠️ Installation & Configuration Paths
+## 🛠️ Cross-Platform Installation
 
-To install the plugin globally, add the repository to your global `opencode.json` (or `opencode.jsonc`) configuration file's `plugin` array:
+Clone the repository directly into OpenCode's skills directory for your operating system:
 
-```json
-{
-  "plugin": [
-    "dispatcher@git+https://github.com/tempius/opencode-dispatcher.git"
-  ]
-}
+### 🪟 Windows (PowerShell)
+```powershell
+git clone https://github.com/tempius/opencode-dispatcher.git "$env:USERPROFILE\.config\opencode\skills\dispatcher"
 ```
+*(Destination path: `C:\Users\<Your-Username>\.config\opencode\skills\dispatcher\`)*
 
-### 📍 Configuration & Asset Locations
-
-The global configuration files and installed skill assets reside in the following platform-specific directories:
-
-#### 🪟 Windows (PowerShell)
-* **Configuration File (`opencode.json` / `opencode.jsonc`):**  
-  `$env:USERPROFILE\.config\opencode\opencode.json`  
-  *(Absolute: `C:\Users\<Your-Username>\.config\opencode\opencode.json`)*
-* **Skill Storage Directory:**  
-  `$env:USERPROFILE\.config\opencode\skills\dispatcher\`  
-  *(Absolute: `C:\Users\<Your-Username>\.config\opencode\skills\dispatcher\`)*
-
-#### 🐧 Linux & macOS (Bash)
-* **Configuration File (`opencode.json` / `opencode.jsonc`):**  
-  `~/.config/opencode/opencode.json`
-* **Skill Storage Directory:**  
-  `~/.config/opencode/skills/dispatcher/`
-
-*(Note: Workspace-level configurations can also be placed directly in your project root as `./opencode.json` or `./.opencode/opencode.json`.)*
+### 🐧 Linux & macOS (Bash)
+```bash
+git clone https://github.com/tempius/opencode-dispatcher.git ~/.config/opencode/skills/dispatcher
+```
+*(Destination path: `~/.config/opencode/skills/dispatcher/`)*
 
 ---
 
