@@ -1,88 +1,58 @@
-\# 🧠 opencode-dispatcher
+# 🧠 opencode-dispatcher
 
+A dynamic model routing engine for OpenCode Desktop that routes your prompts to the best free/Zen-tier model.
 
+---
 
-A dynamic model routing engine for OpenCode Desktop. It automatically queries your active infrastructure cache via the CLI, filters out premium models, and triages your prompts to the absolute best \*\*free / Zen-tier\*\* model for the job.
+## 🛠️ Installation & Configuration Paths
 
+To install the plugin globally, add the repository to your global `opencode.json` (or `opencode.jsonc`) configuration file's `plugin` array:
 
-
-\## 🛠️ Cross-Platform Installation
-
-
-
-Choose the setup instructions corresponding to your operating system to place the skill into OpenCode's global configuration directory.
-
-
-
-\### 🪟 Windows (PowerShell)
-
-```powershell
-
-\# 1. Create the skill directory structure
-
-mkdir -p "$env:USERPROFILE\\.config\\opencode\\skills\\dispatcher"
-
-
-
-\# 2. Download the skill straight into your local configuration directory
-
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/YOUR\_USERNAME/opencode-dispatcher/main/SKILL.md" -OutFile "$env:USERPROFILE\\.config\\opencode\\skills\\dispatcher\\SKILL.md"
-
+```json
+{
+  "plugin": [
+    "dispatcher@git+https://github.com/tempius/opencode-dispatcher.git"
+  ]
+}
 ```
 
+### 📍 Configuration & Asset Locations
 
+The global configuration files and installed skill assets reside in the following platform-specific directories:
 
-\### 🐧 Linux \& macOS (Bash)
+#### 🪟 Windows (PowerShell)
+* **Configuration File (`opencode.json` / `opencode.jsonc`):**  
+  `$env:USERPROFILE\.config\opencode\opencode.json`  
+  *(Absolute: `C:\Users\<Your-Username>\.config\opencode\opencode.json`)*
+* **Skill Storage Directory:**  
+  `$env:USERPROFILE\.config\opencode\skills\dispatcher\`  
+  *(Absolute: `C:\Users\<Your-Username>\.config\opencode\skills\dispatcher\`)*
 
-```bash
+#### 🐧 Linux & macOS (Bash)
+* **Configuration File (`opencode.json` / `opencode.jsonc`):**  
+  `~/.config/opencode/opencode.json`
+* **Skill Storage Directory:**  
+  `~/.config/opencode/skills/dispatcher/`
 
-\# 1. Create the skill directory structure
+*(Note: Workspace-level configurations can also be placed directly in your project root as `./opencode.json` or `./.opencode/opencode.json`.)*
 
-mkdir -p \~/.config/opencode/skills/dispatcher
+---
 
+## ⚡ How to Trigger
 
+1. Restart **OpenCode Desktop** to reload the cache.
+2. Prefix your prompt with `/dispatch` in your chat workspace.
 
-\# 2. Download the skill straight into your local configuration directory
+### Examples:
+* **Complex Architecture:** `/dispatch I need to build a complex multi-screen Android application structure in Jetpack Compose`
+* **Visual Bugs:** `/dispatch why is the layout alignment of my login screen padding broken?`
+* **Boilerplate:** `/dispatch generate 15 simple unit tests for these data utilities`
 
-curl -sSL "https://raw.githubusercontent.com/YOUR\_USERNAME/opencode-dispatcher/main/SKILL.md" -o \~/.config/opencode/skills/dispatcher/SKILL.md
+---
 
-```
-
-
-
-\---
-
-
-
-\## ⚡ How to Trigger
-
-
-
-1\. Completely \*\*restart OpenCode Desktop\*\* to flush the skill engine cache.
-
-2\. In any project workspace chat, prefix your instructions with the `/dispatch` keyword to let the triage layer route your prompt dynamically:
-
-
-
-```text
-
-/dispatch I need to build a complex multi-screen Android application structure in Jetpack Compose
-
-```
-
-
-
-\## ⚙️ Core Architecture Details
-
-
+## ⚙️ Core Architecture Details
 
 When called, the engine executes a platform-native discovery sweep:
-
-1\. Triggers an live environmental refresh via `opencode models --refresh --verbose`.
-
-2\. Inspects performance metadata to strip away credit-consuming endpoints.
-
-3\. Automatically adapts if OpenCode updates add or drop base models over time.
-
-
-
+1. Triggers a live environmental refresh via `opencode models --refresh --verbose`.
+2. Inspects performance metadata to strip away credit-consuming endpoints.
+3. Automatically adapts if OpenCode updates add or drop base models over time.
