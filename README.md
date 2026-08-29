@@ -42,11 +42,17 @@ Picker:
 🛰️ Telemetry Status: Model Recommendation Ready
 * Recommended Model: opencode/muse-spark-1.2-contributor-free
 * Operational Mode: Visual UI Debugging
-* Selection Rationale: Multimodal free model supporting direct image analysis and deep reasoning.
+* Specs & Tier: Zen (Free) | Multimodal | Deep Reasoning
+* Selection Rationale: Multimodal free model supporting direct image analysis and layout reasoning.
 
 📋 Switch Instructions:
-* Interactive UI / TUI: Type /models and select muse-spark-1.2-contributor-free
-* CLI Session: opencode -m muse-spark-1.2-contributor-free
+* Interactive UI / TUI: Type `/model` and select `muse-spark-1.2-contributor-free`
+* CLI Session (One-Liner): `opencode -m opencode/muse-spark-1.2-contributor-free "Analyze the attached screenshot to diagnose and fix the UI layout padding issues."`
+
+💡 Suggested Next Prompt:
+```text
+Analyze the attached screenshot to diagnose and fix the UI layout padding issues.
+```
 ```
 
 ---
@@ -55,5 +61,6 @@ Picker:
 
 When invoked, the picker:
 1. Executes `opencode models --refresh --verbose` via dynamic tool inspection.
-2. Identifies free/zen-tier nodes (0.0 credit cost).
-3. Matches your task requirements (reasoning depth, tool-use execution, throughput speed, or vision/multimodal parsing) to the optimal model.
+2. Identifies active free/zen-tier nodes (0.0 credit cost) with automatic fallback handling.
+3. Matches your workload (reasoning depth, tool-use loops, throughput, large-context audits, or multimodal vision) to the optimal model.
+4. Generates switch commands and a refined prompt ready for immediate execution.
